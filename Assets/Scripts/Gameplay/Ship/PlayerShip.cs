@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerShip : Singleton<PlayerShip>
-{
+public class PlayerShip: Singleton<PlayerShip> {
     [Header("Set in Inspector")]
     public float shipSpeed = 10f;
-    public GameObject bulletPrefab;
 
-    Rigidbody _rigid;
+    [SerializeField] private ProjectilePool _projectilePool;
+    private Rigidbody _rigid;
+    private Camera _mainCam;
 
     protected override void Awake()
     {
         base.Awake();
 
         _rigid = GetComponent<Rigidbody>();
+        _mainCam = Camera.main;
+
+        if (_projectilePool == null)
+            _projectilePool = GetComponentInChildren<ProjectilePool>();
     }
 
     void Update()
@@ -34,12 +38,12 @@ public class PlayerShip : Singleton<PlayerShip>
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //TO DO: Fire();
+            Fire();
         }
     }
 
 
-    void OnCollisionEnter(Collision coll)
+    private void OnCollisionEnter(Collision coll)
     {
         if (coll.gameObject.tag == "asteroid")
         {
@@ -47,14 +51,15 @@ public class PlayerShip : Singleton<PlayerShip>
         }
     }
 
-    void Fire()
+    private void Fire()
     {
         Vector3 mPos = Input.mousePosition;
-        mPos.z = -Camera.main.transform.position.z;
-        Vector3 mPos3D = Camera.main.ScreenToWorldPoint(mPos);
+        mPos.z = -_mainCam.transform.position.z;
+        Vector3 mPos3D = _mainCam.ScreenToWorldPoint(mPos);
 
-        GameObject go = Instantiate<GameObject>(bulletPrefab);
-        go.transform.position = transform.position;
-        go.transform.LookAt(mPos3D);
+        var projectile = _projectilePool.GetAvailableObject();       
+        projectile.transform.position = transform.position;
+        projectile.transform.LookAt(mPos3D);
+        projectile.gameObject.SetActive(true);
     }
 }
