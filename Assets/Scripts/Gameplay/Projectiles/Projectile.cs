@@ -22,7 +22,15 @@ public class Projectile : MonoBehaviour
         _rigidbody.velocity = transform.forward * bulletSpeed;
     }
 
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "asteroid") {
+            Destroy(other.gameObject);
+            DestroyMe();
+        }
+    }
+
     void DestroyMe() {
         gameObject.SetActive(false);
+        CancelInvoke(nameof(DestroyMe));
     }
 }

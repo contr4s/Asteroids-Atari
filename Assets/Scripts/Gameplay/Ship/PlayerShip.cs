@@ -7,6 +7,7 @@ public class PlayerShip: Singleton<PlayerShip> {
     [Header("Set in Inspector")]
     public float shipSpeed = 10f;
 
+    [SerializeField] private int _lifes = 3;
     [SerializeField] private ProjectilePool _projectilePool;
     private Rigidbody _rigid;
     private Camera _mainCam;
@@ -47,7 +48,7 @@ public class PlayerShip: Singleton<PlayerShip> {
     {
         if (coll.gameObject.tag == "asteroid")
         {
-            //TO DO: extraxt life
+            _lifes--;
         }
     }
 
