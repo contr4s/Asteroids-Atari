@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/AsteroidsSO", fileName = "AsteroidsSO.asset")]
 [System.Serializable]
-public class AsteroidsScriptableObject : ScriptableObject
+public class AsteroidsScriptableObject: ScriptableObject
 {
-    static public AsteroidsScriptableObject S; // This Scriptable Object is an unprotected Singleton
+    public static AsteroidsScriptableObject S;
 
     public AsteroidsScriptableObject()
     {
-        S = this; // Assign the Singleton as part of the constructor.
+        S = this;
     }
 
     public float minVel = 5;

@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerShip: Singleton<PlayerShip> {
+public class PlayerShip: Singleton<PlayerShip>
+{
     [Header("Set in Inspector")]
     public float shipSpeed = 10f;
 
@@ -44,9 +43,9 @@ public class PlayerShip: Singleton<PlayerShip> {
     }
 
 
-    private void OnCollisionEnter(Collision coll)
+    private void OnTriggerEnter(Collider other)
     {
-        if (coll.gameObject.tag == "asteroid")
+        if (other.gameObject.tag == "asteroid")
         {
             _lifes--;
         }
@@ -58,7 +57,7 @@ public class PlayerShip: Singleton<PlayerShip> {
         mPos.z = -_mainCam.transform.position.z;
         Vector3 mPos3D = _mainCam.ScreenToWorldPoint(mPos);
 
-        var projectile = _projectilePool.GetAvailableObject();       
+        var projectile = _projectilePool.GetAvailableObject();
         projectile.transform.position = transform.position;
         projectile.transform.LookAt(mPos3D);
         projectile.gameObject.SetActive(true);

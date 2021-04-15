@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShipPointAtMouse : MonoBehaviour {
+public class ShipPointAtMouse: MonoBehaviour
+{
     private Vector3 _mousePoint3D;
     private Camera _mainCam;
 
-    private void Awake() {
+    private void Awake()
+    {
         _mainCam = Camera.main;
     }
 

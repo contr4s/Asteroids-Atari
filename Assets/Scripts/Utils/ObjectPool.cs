@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T>: MonoBehaviour where T : MonoBehaviour {
+public class ObjectPool<T>: MonoBehaviour where T : MonoBehaviour
+{
     public T spawnObjectPrefab;
 
     [SerializeField] private int _poolDepth;
@@ -9,8 +10,10 @@ public class ObjectPool<T>: MonoBehaviour where T : MonoBehaviour {
 
     private List<T> _pool = new List<T>();
 
-    private void Awake() {
-        for (int i = 0; i < _poolDepth; i++) {
+    private void Awake()
+    {
+        for (int i = 0; i < _poolDepth; i++)
+        {
             var pooledObject = Instantiate(spawnObjectPrefab);
             pooledObject.gameObject.SetActive(false);
             _pool.Add(pooledObject);
@@ -18,20 +21,24 @@ public class ObjectPool<T>: MonoBehaviour where T : MonoBehaviour {
         }
     }
 
-    public T GetAvailableObject() {
-        for (int i = 0; i < _pool.Count; i++) {
+    public T GetAvailableObject()
+    {
+        for (int i = 0; i < _pool.Count; i++)
+        {
             if (!_pool[i].gameObject.activeInHierarchy)
                 return _pool[i];
         }
 
-        if (_canGrow == true) {
+        if (_canGrow == true)
+        {
             var pooledObject = Instantiate(spawnObjectPrefab);
             pooledObject.gameObject.SetActive(false);
             _pool.Add(pooledObject);
 
             return pooledObject;
         }
-        else {
+        else
+        {
             Debug.LogError("не хватает глубины пула");
             return null;
         }
