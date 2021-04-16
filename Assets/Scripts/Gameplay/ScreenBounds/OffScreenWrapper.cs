@@ -22,7 +22,6 @@ public class OffScreenWrapper: MonoBehaviour
                 Vector3 pos = transform.position.ComponentDivide(other.transform.localScale);
                 pos.z = 0;
                 transform.position = pos;
-                Debug.Log("Runaway object caught by ExtraBounds: " + gameObject.name);
 
                 ScreenWrap(extraBounds);
             }

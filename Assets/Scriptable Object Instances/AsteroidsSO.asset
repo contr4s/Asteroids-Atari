@@ -16,8 +16,7 @@ MonoBehaviour:
   maxVel: 5
   maxAngularVel: 10
   initialSize: 1
-  asteroidScale: 0.75
+  asteroidScale: 0.7
   numSmallerAsteroidsToSpawn: 2
+  maxAsteroidGeneration: 3
   pointsForAsteroidSize: 0000000090010000c800000064000000
-  asteroidPrefabs: []
-  asteroidExplosionPrefabs: []

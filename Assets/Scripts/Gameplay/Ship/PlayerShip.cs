@@ -11,6 +11,14 @@ public class PlayerShip: Singleton<PlayerShip>
     private Rigidbody _rigid;
     private Camera _mainCam;
 
+    static public Vector3 position
+    {
+        get
+        {
+            return S.transform.position;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();

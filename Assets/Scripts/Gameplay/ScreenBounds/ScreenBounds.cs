@@ -6,8 +6,20 @@ public class ScreenBounds: MonoBehaviour
     public float zScale = 10;
 
     private static Camera cam;
-    private static BoxCollider boxColl;
 
+    private static BoxCollider boxColl;
+    public static Bounds bounds => boxColl.bounds;
+
+    public static Vector3 randomOnScreenLoc
+    {
+        get
+        {
+            Vector3 min = boxColl.bounds.min;
+            Vector3 max = boxColl.bounds.max;
+            Vector3 loc = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0);
+            return loc;
+        }
+    }
 
     void Awake()
     {
@@ -34,20 +46,7 @@ public class ScreenBounds: MonoBehaviour
         scaleDesired.x = scaleDesired.y * cam.aspect;
 
         return scaleDesired.ComponentDivide(cam.transform.localScale);
-    }
-
-    public static Vector3 RANDOM_ON_SCREEN_LOC
-    {
-        get
-        {
-            Vector3 min = boxColl.bounds.min;
-            Vector3 max = boxColl.bounds.max;
-            Vector3 loc = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0);
-            return loc;
-        }
-    }
-
-    public static Bounds BOUNDS => boxColl.bounds;
+    }    
 }
 
 

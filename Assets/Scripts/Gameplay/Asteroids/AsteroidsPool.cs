@@ -1,0 +1,3 @@
+﻿class AsteroidsPool : ObjectPool<Asteroid>
+{
+}
