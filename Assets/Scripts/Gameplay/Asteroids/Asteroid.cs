@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Asteroid: MonoBehaviour
+public class Asteroid: MonoBehaviour, IDestroyable
 {
     public float size;
     public int generation;
@@ -17,6 +17,14 @@ public class Asteroid: MonoBehaviour
     {
         transform.localScale = Vector3.one * size;
         InitVelocity();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out PoliceShip policeShip))
+        {
+            policeShip.DestroyMe();
+        }
     }
 
     public void DestroyMe()

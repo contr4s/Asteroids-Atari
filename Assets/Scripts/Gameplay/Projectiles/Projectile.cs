@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile: MonoBehaviour
+public class Projectile: MonoBehaviour, IDestroyable
 {
     public float bulletSpeed = 20;
     public float lifeTime = 2;
@@ -22,14 +22,14 @@ public class Projectile: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Asteroid>(out Asteroid asteroid))
+        if (other.TryGetComponent(out IDestroyable destroyableObject))
         {
-            asteroid.DestroyMe();
+            destroyableObject.DestroyMe();
             DestroyMe();
         }
     }
 
-    void DestroyMe()
+    public void DestroyMe()
     {
         gameObject.SetActive(false);
         CancelInvoke(nameof(DestroyMe));
