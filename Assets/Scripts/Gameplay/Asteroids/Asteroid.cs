@@ -44,6 +44,7 @@ public class Asteroid: MonoBehaviour, IDestroyable
         explosion.gameObject.SetActive(true);
         explosion.Play();
 
+        GameManager.S.audioManager.PlayExplosionSound();
 
         gameObject.SetActive(false);
         GameManager.S.SpawnChildAsteroid(generation + 1, transform.position);

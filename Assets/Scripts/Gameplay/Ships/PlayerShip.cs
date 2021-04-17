@@ -106,6 +106,8 @@ public class PlayerShip: Singleton<PlayerShip>
         projectile.transform.position = transform.position;
         projectile.transform.LookAt(mPos3D);
         projectile.gameObject.SetActive(true);
+
+        GameManager.S.audioManager.PlayShootSound();
     }
 
     private IEnumerator ImmortalityAfterCollision(float immortalTime)

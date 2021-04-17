@@ -38,6 +38,7 @@ public class GameManager : Singleton<GameManager>
     public AsteroidsScriptableObject asteroidsSO;
 
     public UIManager mangerUI;
+    public AudioManager audioManager;
 
     [SerializeField]
     private float _timeBetweenSpawningPoliceShips= 1f;
