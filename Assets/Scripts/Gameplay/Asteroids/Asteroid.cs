@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -39,15 +38,10 @@ public class Asteroid: MonoBehaviour, IDestroyable
         }
 
         var explosion = GameManager.S.explosionsPool.GetAvailableObject();
-        explosion.transform.position = transform.position;
-        explosion.transform.localScale = Vector3.one * size;
-        explosion.gameObject.SetActive(true);
-        explosion.Play();
-
-        GameManager.S.audioManager.PlayExplosionSound();
+        GameManager.S.explosionsPool.InitExplosion(explosion, transform.position, size);
 
         gameObject.SetActive(false);
-        GameManager.S.SpawnChildAsteroid(generation + 1, transform.position);
+        GameManager.S.asteroidsManager.SpawnChildAsteroid(generation + 1, transform.position);
     }
 
     private void InitVelocity()

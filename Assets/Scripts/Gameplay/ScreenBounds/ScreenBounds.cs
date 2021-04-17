@@ -46,7 +46,7 @@ public class ScreenBounds: MonoBehaviour
         scaleDesired.x = scaleDesired.y * cam.aspect;
 
         return scaleDesired.ComponentDivide(cam.transform.localScale);
-    }    
+    }
 }
 
 

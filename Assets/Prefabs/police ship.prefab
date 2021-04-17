@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _reloadTime: 3
+  _reloadTime: 2
   _rewardForDestroy: 200
 --- !u!135 &2986047471693204011
 SphereCollider:

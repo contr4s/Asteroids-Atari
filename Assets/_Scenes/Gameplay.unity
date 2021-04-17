@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6890734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6890736}
+  - component: {fileID: 6890735}
+  m_Layer: 0
+  m_Name: ExplosionsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &6890735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18163dce171c03438a32e9fe41e6133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObjectPrefab: {fileID: 6661100075089794219, guid: 57dfa31184648554bae16cc38b4ecac5, type: 3}
+  _poolDepth: 5
+  _canGrow: 1
+--- !u!4 &6890736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 405716033}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179226834
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +207,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &217623904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217623905}
+  - component: {fileID: 217623907}
+  - component: {fileID: 217623906}
+  m_Layer: 0
+  m_Name: PoliceShipsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &217623905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217623904}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 405716033}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &217623906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217623904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e20064bac8d9e3478871a21808b8f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &217623907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217623904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46a6eb67e8201745ab46fba1cbb559a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObjectPrefab: {fileID: 2986047471693204010, guid: 544f343a5fdaaa249b4fa7454739f5d8, type: 3}
+  _poolDepth: 5
+  _canGrow: 1
 --- !u!1 &228255195
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,10 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405716033}
-  - component: {fileID: 405716032}
   - component: {fileID: 405716031}
-  - component: {fileID: 405716034}
-  - component: {fileID: 405716035}
   - component: {fileID: 405716036}
   m_Layer: 0
   m_Name: GameManager
@@ -563,7 +665,7 @@ MonoBehaviour:
     - {fileID: 1060802139}
     scoreBoard: {fileID: 770917681}
     levelBoard: {fileID: 1083814251}
-    _timeOfShowingPreGamePanel: 2
+    _timeOfShowingPreGamePanel: 1.5
     _pregameUI: {fileID: 379640579}
     _gameOverUI: {fileID: 816640078}
   audioManager:
@@ -571,25 +673,12 @@ MonoBehaviour:
     _shot: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
     _explosion: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
     _audioSource: {fileID: 405716036}
+  asteroidsManager: {fileID: 1243891303}
+  policeShipsManager: {fileID: 217623906}
+  explosionsPool: {fileID: 6890735}
   _timeBetweenSpawningPoliceShips: 3
   _startAsteroidsAmount: 4
   _startPoliceShipAmount: 2
-  explosionsPool: {fileID: 405716035}
---- !u!114 &405716032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405716030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7776b15c2a9bda442bc7a11d642c6573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnObjectPrefab: {fileID: 712213241, guid: e7d60a16134be8643ad51ae5251cc767, type: 3}
-  _poolDepth: 20
-  _canGrow: 1
 --- !u!4 &405716033
 Transform:
   m_ObjectHideFlags: 0
@@ -600,40 +689,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1243891301}
+  - {fileID: 217623905}
+  - {fileID: 6890736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &405716034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405716030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46a6eb67e8201745ab46fba1cbb559a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnObjectPrefab: {fileID: 2986047471693204010, guid: 544f343a5fdaaa249b4fa7454739f5d8, type: 3}
-  _poolDepth: 10
-  _canGrow: 1
---- !u!114 &405716035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405716030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18163dce171c03438a32e9fe41e6133, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnObjectPrefab: {fileID: 6661100075089794219, guid: 57dfa31184648554bae16cc38b4ecac5, type: 3}
-  _poolDepth: 5
-  _canGrow: 1
 --- !u!82 &405716036
 AudioSource:
   m_ObjectHideFlags: 0
@@ -893,7 +955,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &764879431
 GameObject:
@@ -1766,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314242293146268581, guid: 47edbb84a9216304d929ec2aff7acd4f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6314242293146268581, guid: 47edbb84a9216304d929ec2aff7acd4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1810,6 +1872,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47edbb84a9216304d929ec2aff7acd4f, type: 3}
+--- !u!1 &1243891300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243891301}
+  - component: {fileID: 1243891302}
+  - component: {fileID: 1243891303}
+  m_Layer: 0
+  m_Name: AsteroidsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1243891301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243891300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 405716033}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1243891302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243891300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7776b15c2a9bda442bc7a11d642c6573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObjectPrefab: {fileID: 712213241, guid: e7d60a16134be8643ad51ae5251cc767, type: 3}
+  _poolDepth: 20
+  _canGrow: 1
+--- !u!114 &1243891303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243891300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe0618f2ccc4ae42906ad2e7b758890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1366589488
 GameObject:
   m_ObjectHideFlags: 0

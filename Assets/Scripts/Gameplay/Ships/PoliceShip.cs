@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ProjectilePool))]
@@ -38,24 +37,17 @@ public class PoliceShip: MonoBehaviour, IDestroyable
         }
 
         var explosion = GameManager.S.explosionsPool.GetAvailableObject();
-        explosion.transform.position = transform.position;
-        explosion.gameObject.SetActive(true);
-        explosion.Play();
-
-        GameManager.S.audioManager.PlayExplosionSound();
+        GameManager.S.explosionsPool.InitExplosion(explosion, transform.position);
     }
 
     private IEnumerator ShootingAtPlayerShip(float reload)
     {
-        while(true)
+        yield return new WaitForSeconds(reload);
+
+        while (true)
         {
             var projectile = _projectilePool.GetAvailableObject();
-
-            projectile.CreatedByPlayer = false;
-            projectile.transform.position = transform.position;
-            projectile.transform.LookAt(PlayerShip.position);
-            projectile.transform.position += projectile.transform.forward;
-            projectile.gameObject.SetActive(true);
+            _projectilePool.InitProjectile(projectile, false, transform.position, PlayerShip.position);
 
             yield return new WaitForSeconds(reload);
         }

@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerShip: Singleton<PlayerShip>
 {
     [Header("Set in Inspector")]
-    public float shipSpeed = 10f;
+    [SerializeField] private float _shipSpeed = 10f;
 
     [SerializeField] private int _startlives = 3;
     private int _curLives;
-    public int Lives 
-    { 
+    public int Lives
+    {
         get => _curLives;
         set
         {
@@ -36,13 +36,7 @@ public class PlayerShip: Singleton<PlayerShip>
     private Animator _animator;
     private Camera _mainCam;
 
-    static public Vector3 position
-    {
-        get
-        {
-            return S.transform.position;
-        }
-    }
+    public static Vector3 position => S.transform.position;
 
     protected override void Awake()
     {
@@ -53,7 +47,7 @@ public class PlayerShip: Singleton<PlayerShip>
         _mainCam = Camera.main;
 
         if (_projectilePool == null)
-            _projectilePool = GetComponentInChildren<ProjectilePool>();                   
+            _projectilePool = GetComponentInChildren<ProjectilePool>();
     }
 
     private void Start()
@@ -73,7 +67,7 @@ public class PlayerShip: Singleton<PlayerShip>
             vel.Normalize();
         }
 
-        _rigid.velocity = vel * shipSpeed;
+        _rigid.velocity = vel * _shipSpeed;
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -91,7 +85,7 @@ public class PlayerShip: Singleton<PlayerShip>
                 Lives--;
                 destroyable.DestroyMe();
                 StartCoroutine(ImmortalityAfterCollision(_immoratalityTime));
-            }               
+            }
         }
     }
 
@@ -102,12 +96,7 @@ public class PlayerShip: Singleton<PlayerShip>
         Vector3 mPos3D = _mainCam.ScreenToWorldPoint(mPos);
 
         var projectile = _projectilePool.GetAvailableObject();
-        projectile.CreatedByPlayer = true;
-        projectile.transform.position = transform.position;
-        projectile.transform.LookAt(mPos3D);
-        projectile.gameObject.SetActive(true);
-
-        GameManager.S.audioManager.PlayShootSound();
+        _projectilePool.InitProjectile(projectile, true, transform.position, mPos3D);
     }
 
     private IEnumerator ImmortalityAfterCollision(float immortalTime)
