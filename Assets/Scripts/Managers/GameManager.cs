@@ -10,7 +10,7 @@ using TMPro;
 [RequireComponent(typeof(PoliceShipPool))]
 [RequireComponent(typeof(ExplosionsPool))]
 public class GameManager : Singleton<GameManager>
-{   
+{  
     private int _score = 0;
     public int Score 
     {       
@@ -20,21 +20,25 @@ public class GameManager : Singleton<GameManager>
             if (_score < 0)
                 Debug.LogError("score can't be less than 0");
             _score = value;
-            _scoreBoard.text = string.Format("Score: {0}", _score);
+            mangerUI.UpdateScoreBoard(string.Format("Score: {0}", _score));
         } 
     }
 
-    static public int curLevel = 0;
+    private int _curLevel = 0;
+    public int CurLevel { 
+        get => _curLevel; 
+        private set 
+        {
+            _curLevel = value;
+            mangerUI.UpdateLevelBoard(string.Format("Level: {0}", _curLevel));
+        } 
+    }
 
     [Header("Set in Inspector")]
     public AsteroidsScriptableObject asteroidsSO;
 
-    public TextMeshProUGUI livesBoard;
-    [SerializeField] private GameObject[] UIExtraLives;
-    [SerializeField] private TextMeshProUGUI _scoreBoard;
+    public UIManager mangerUI;
 
-    [SerializeField]
-    private float _timeOfShowingPreGamePanel = 1f;
     [SerializeField]
     private float _timeBetweenSpawningPoliceShips= 1f;
 
@@ -59,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        StartCoroutine(StartGame());
+        StartCoroutine(StartGame(mangerUI.TimeOfShowingPreGamePanel));
     }
 
     public void SpawnChildAsteroid(int generation, Vector3 pos)
@@ -73,30 +77,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void RefreshUILives(int lives)
+    public void GameOver()
     {
-        for (int i = 0; i < UIExtraLives.Length; i++)
-        {
-            if (i < lives)
-            { 
-                UIExtraLives[i].SetActive(true);
-            }
-            else
-            {
-                UIExtraLives[i].SetActive(false);
-            }
-        }
+        mangerUI.GameOverUI.SetActive(true);
     }
 
-    private IEnumerator StartGame()
+    public void RestartGame()
     {
-        yield return new WaitForSeconds(_timeOfShowingPreGamePanel);
+        SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator StartGame(float timeOfShowingPreGamePanel)
+    {
+        yield return new WaitForSeconds(timeOfShowingPreGamePanel);
+        mangerUI.PregameUI.SetActive(false);
         StartLevel();
     }
 
     private void StartLevel()
     { 
-        for (int i = 0; i < curLevel + _startAsteroidsAmount; i++)
+        for (int i = 0; i < _curLevel + _startAsteroidsAmount; i++)
         {
             SpawnParentAsteroid();
         }
@@ -136,7 +136,7 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(_timeBetweenSpawningPoliceShips);
 
         int policeShipAmount = 0;
-        while (policeShipAmount < _startPoliceShipAmount + curLevel)
+        while (policeShipAmount < _startPoliceShipAmount + _curLevel)
         {
             var policeShip = _policeShipsPool.GetAvailableObject();
 

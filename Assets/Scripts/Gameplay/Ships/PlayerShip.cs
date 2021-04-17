@@ -2,6 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
 public class PlayerShip: Singleton<PlayerShip>
 {
     [Header("Set in Inspector")]
@@ -17,12 +18,11 @@ public class PlayerShip: Singleton<PlayerShip>
             _curLives = value;
             if (_curLives <= 0)
             {
-                GameManager.S.livesBoard.text = Lives.ToString();
+                GameManager.S.GameOver();
             }
             else
             {
-                GameManager.S.RefreshUILives(_curLives);
-                GameManager.S.livesBoard.text = Lives.ToString();
+                GameManager.S.mangerUI.RefreshUILives(_curLives);
             }
         }
     }
@@ -33,6 +33,7 @@ public class PlayerShip: Singleton<PlayerShip>
     private bool _immortality = false;
 
     private Rigidbody _rigid;
+    private Animator _animator;
     private Camera _mainCam;
 
     static public Vector3 position
@@ -48,6 +49,7 @@ public class PlayerShip: Singleton<PlayerShip>
         base.Awake();
 
         _rigid = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         _mainCam = Camera.main;
 
         if (_projectilePool == null)
@@ -109,7 +111,9 @@ public class PlayerShip: Singleton<PlayerShip>
     private IEnumerator ImmortalityAfterCollision(float immortalTime)
     {
         _immortality = true;
+        _animator.SetBool("wound", true);
         yield return new WaitForSeconds(immortalTime);
+        _animator.SetBool("wound", false);
         _immortality = false;
     }
 }

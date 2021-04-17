@@ -8,11 +8,7 @@ public class Projectile: MonoBehaviour, IDestroyable
 
     private Rigidbody _rigidbody;
 
-    private bool _createdByPlayer = true;
-    public bool CreatedByPlayer { 
-        get => _createdByPlayer;
-        set => _createdByPlayer = value; 
-    }
+    public bool CreatedByPlayer { get; set; }
 
     private void Awake()
     {
