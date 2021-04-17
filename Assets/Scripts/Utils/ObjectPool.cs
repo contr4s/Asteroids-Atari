@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T>: MonoBehaviour where T : MonoBehaviour
+public class ObjectPool<T>: MonoBehaviour where T : Component
 {
     public T spawnObjectPrefab;
 

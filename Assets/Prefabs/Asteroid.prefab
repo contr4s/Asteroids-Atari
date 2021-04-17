@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 1
   generation: 0
+  _explosion: {fileID: 0}
 --- !u!114 &-6552577336237462901
 MonoBehaviour:
   m_ObjectHideFlags: 0

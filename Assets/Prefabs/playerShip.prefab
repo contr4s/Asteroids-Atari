@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObjectPrefab: {fileID: 114844671325870714, guid: 707b0307ede51da42b61190da60dff41, type: 3}
-  _poolDepth: 20
+  _poolDepth: 10
   _canGrow: 1
 --- !u!1 &1515988987187041325
 GameObject:
@@ -155,8 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSpeed: 10
-  _lifes: 3
+  _startlives: 3
   _projectilePool: {fileID: 749632681}
+  _immoratalityTime: 1
 --- !u!135 &1926747712
 SphereCollider:
   m_ObjectHideFlags: 0

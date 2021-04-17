@@ -22,5 +22,10 @@ public class PoliceShip: MonoBehaviour, IDestroyable
         {
             GameManager.S.Score += _rewardForDestroy;
         }
+
+        var explosion = GameManager.S.explosionsPool.GetAvailableObject();
+        explosion.transform.position = transform.position;
+        explosion.gameObject.SetActive(true);
+        explosion.Play();
     }
 }

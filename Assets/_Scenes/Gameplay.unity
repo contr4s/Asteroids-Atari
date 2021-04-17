@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405716030
 GameObject:
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 405716032}
   - component: {fileID: 405716031}
   - component: {fileID: 405716034}
+  - component: {fileID: 405716035}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -355,6 +356,7 @@ MonoBehaviour:
   _timeBetweenSpawningPoliceShips: 3
   _startAsteroidsAmount: 4
   _startPoliceShipAmount: 2
+  explosionsPool: {fileID: 0}
 --- !u!114 &405716032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +401,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObjectPrefab: {fileID: 2986047471693204010, guid: 544f343a5fdaaa249b4fa7454739f5d8, type: 3}
   _poolDepth: 10
+  _canGrow: 1
+--- !u!114 &405716035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405716030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18163dce171c03438a32e9fe41e6133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObjectPrefab: {fileID: 6661100075089794219, guid: 57dfa31184648554bae16cc38b4ecac5, type: 3}
+  _poolDepth: 5
   _canGrow: 1
 --- !u!1 &409386307
 GameObject:
@@ -1092,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314242293146268581, guid: 47edbb84a9216304d929ec2aff7acd4f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6314242293146268581, guid: 47edbb84a9216304d929ec2aff7acd4f, type: 3}
       propertyPath: m_LocalPosition.x

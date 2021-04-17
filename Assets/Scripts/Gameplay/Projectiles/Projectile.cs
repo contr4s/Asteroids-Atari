@@ -5,15 +5,13 @@ using UnityEngine;
 public class Projectile: MonoBehaviour, IDestroyable
 {
     [SerializeField] private float bulletSpeed = 20;
-    [SerializeField] private float lifeTime = 2;
 
     private Rigidbody _rigidbody;
-    private Coroutine _lifeCycle;
 
-    public bool createdByPlayer = true;
+    private bool _createdByPlayer = true;
     public bool CreatedByPlayer { 
-        get => createdByPlayer;
-        set => createdByPlayer = value; 
+        get => _createdByPlayer;
+        set => _createdByPlayer = value; 
     }
 
     private void Awake()
@@ -23,8 +21,6 @@ public class Projectile: MonoBehaviour, IDestroyable
 
     private void OnEnable()
     {
-        _lifeCycle = StartCoroutine(LifeCycle());
-
         _rigidbody.velocity = transform.forward * bulletSpeed;
     }
 
@@ -40,12 +36,5 @@ public class Projectile: MonoBehaviour, IDestroyable
     public void DestroyMe(eDestroyedBy destroyedBy = eDestroyedBy.none)
     {
         gameObject.SetActive(false);
-        StopCoroutine(_lifeCycle);
-    }
-
-    private IEnumerator LifeCycle()
-    {
-        yield return new WaitForSeconds(lifeTime);
-        DestroyMe();
     }
 }

@@ -8,6 +8,7 @@ using TMPro;
 
 [RequireComponent(typeof(AsteroidsPool))]
 [RequireComponent(typeof(PoliceShipPool))]
+[RequireComponent(typeof(ExplosionsPool))]
 public class GameManager : Singleton<GameManager>
 {   
     private int _score = 0;
@@ -43,7 +44,8 @@ public class GameManager : Singleton<GameManager>
     private int _startPoliceShipAmount;
 
     private AsteroidsPool _asteroidsPool;
-    private PoliceShipPool _policeShipPool;
+    private PoliceShipPool _policeShipsPool;
+    public ExplosionsPool explosionsPool;
     private const float _minDistToPlayerShip = 5;
 
     protected override void Awake()
@@ -51,7 +53,8 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         _asteroidsPool = GetComponent<AsteroidsPool>();
-        _policeShipPool = GetComponent<PoliceShipPool>();
+        _policeShipsPool = GetComponent<PoliceShipPool>();
+        explosionsPool = GetComponent<ExplosionsPool>();
     }
 
     private void Start()
@@ -135,7 +138,7 @@ public class GameManager : Singleton<GameManager>
         int policeShipAmount = 0;
         while (policeShipAmount < _startPoliceShipAmount + curLevel)
         {
-            var policeShip = _policeShipPool.GetAvailableObject();
+            var policeShip = _policeShipsPool.GetAvailableObject();
 
             policeShip.transform.position = FindGoodLocation();
             policeShip.gameObject.SetActive(true);
