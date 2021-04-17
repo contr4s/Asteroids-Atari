@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip: Singleton<PlayerShip>
@@ -6,8 +7,31 @@ public class PlayerShip: Singleton<PlayerShip>
     [Header("Set in Inspector")]
     public float shipSpeed = 10f;
 
-    [SerializeField] private int _lifes = 3;
+    [SerializeField] private int _startlives = 3;
+    private int _curLives;
+    public int Lives 
+    { 
+        get => _curLives;
+        set
+        {
+            _curLives = value;
+            if (_curLives <= 0)
+            {
+                GameManager.S.livesBoard.text = Lives.ToString();
+            }
+            else
+            {
+                GameManager.S.RefreshUILives(_curLives);
+                GameManager.S.livesBoard.text = Lives.ToString();
+            }
+        }
+    }
+
     [SerializeField] private ProjectilePool _projectilePool;
+
+    [SerializeField] private float _immoratalityTime = 2f;
+    private bool _immortality = false;
+
     private Rigidbody _rigid;
     private Camera _mainCam;
 
@@ -27,7 +51,12 @@ public class PlayerShip: Singleton<PlayerShip>
         _mainCam = Camera.main;
 
         if (_projectilePool == null)
-            _projectilePool = GetComponentInChildren<ProjectilePool>();
+            _projectilePool = GetComponentInChildren<ProjectilePool>();                   
+    }
+
+    private void Start()
+    {
+        Lives = _startlives;
     }
 
     void Update()
@@ -53,9 +82,14 @@ public class PlayerShip: Singleton<PlayerShip>
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "asteroid")
+        if (other.gameObject.TryGetComponent(out IDestroyable destroyable))
         {
-            _lifes--;
+            if (!destroyable.CreatedByPlayer && !_immortality)
+            {
+                Lives--;
+                destroyable.DestroyMe();
+                StartCoroutine(ImmortalityAfterCollision(_immoratalityTime));
+            }               
         }
     }
 
@@ -66,8 +100,16 @@ public class PlayerShip: Singleton<PlayerShip>
         Vector3 mPos3D = _mainCam.ScreenToWorldPoint(mPos);
 
         var projectile = _projectilePool.GetAvailableObject();
+        projectile.CreatedByPlayer = true;
         projectile.transform.position = transform.position;
         projectile.transform.LookAt(mPos3D);
         projectile.gameObject.SetActive(true);
+    }
+
+    private IEnumerator ImmortalityAfterCollision(float immortalTime)
+    {
+        _immortality = true;
+        yield return new WaitForSeconds(immortalTime);
+        _immortality = false;
     }
 }

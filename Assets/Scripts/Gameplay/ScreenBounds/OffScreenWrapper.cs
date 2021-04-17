@@ -9,7 +9,7 @@ public class OffScreenWrapper: MonoBehaviour
             return;
         }
 
-        if (other.TryGetComponent<ScreenBounds>(out ScreenBounds bounds))
+        if (other.TryGetComponent(out ScreenBounds bounds))
         {
             ScreenWrap(bounds);
         }
@@ -30,7 +30,6 @@ public class OffScreenWrapper: MonoBehaviour
 
     private void ScreenWrap(ScreenBounds bounds)
     {
-        // Wrap whichever direction is necessary
         Vector3 relativeLoc = bounds.transform.InverseTransformPoint(transform.position);
         // Because this is now a child of OnScreenBounds, 0.5f is the edge of the screen.
         if (Mathf.Abs(relativeLoc.x) > 0.5f)

@@ -4,19 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.Mathematics;
+using TMPro;
 
 [RequireComponent(typeof(AsteroidsPool))]
 [RequireComponent(typeof(PoliceShipPool))]
 public class GameManager : Singleton<GameManager>
 {   
-    static public int score = 0;
+    private int _score = 0;
+    public int Score 
+    {       
+        get => _score; 
+        set
+        {
+            if (_score < 0)
+                Debug.LogError("score can't be less than 0");
+            _score = value;
+            _scoreBoard.text = string.Format("Score: {0}", _score);
+        } 
+    }
 
     static public int curLevel = 0;
 
     [Header("Set in Inspector")]
-    public AsteroidsScriptableObject asteroidsSO;  
+    public AsteroidsScriptableObject asteroidsSO;
 
-    public Text scoreBoard;
+    public TextMeshProUGUI livesBoard;
+    [SerializeField] private GameObject[] UIExtraLives;
+    [SerializeField] private TextMeshProUGUI _scoreBoard;
 
     [SerializeField]
     private float _timeOfShowingPreGamePanel = 1f;
@@ -40,15 +54,36 @@ public class GameManager : Singleton<GameManager>
         _policeShipPool = GetComponent<PoliceShipPool>();
     }
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(StartGame());
     }
 
-    //void OnGUI()
-    //{
-    //    scoreBoard.text = "Score: " + score.ToString();
-    //}
+    public void SpawnChildAsteroid(int generation, Vector3 pos)
+    {
+        if (generation >= asteroidsSO.maxAsteroidGeneration)
+            return;
+
+        for (int i = 0; i < asteroidsSO.numSmallerAsteroidsToSpawn; i++)
+        {
+            InitAsteroid(pos, generation);
+        }
+    }
+
+    public void RefreshUILives(int lives)
+    {
+        for (int i = 0; i < UIExtraLives.Length; i++)
+        {
+            if (i < lives)
+            { 
+                UIExtraLives[i].SetActive(true);
+            }
+            else
+            {
+                UIExtraLives[i].SetActive(false);
+            }
+        }
+    }
 
     private IEnumerator StartGame()
     {
@@ -81,18 +116,7 @@ public class GameManager : Singleton<GameManager>
             pos = ScreenBounds.randomOnScreenLoc;
         }
         return pos;
-    }
-
-    public void SpawnChildAsteroid(int generation, Vector3 pos)
-    {
-        if (generation >= asteroidsSO.maxAsteroidGeneration)
-            return;
-
-        for (int i = 0; i < asteroidsSO.numSmallerAsteroidsToSpawn; i++)
-        {
-            InitAsteroid(pos, generation);
-        } 
-    }
+    }  
 
     private void InitAsteroid(Vector3 pos, int generation)
     {

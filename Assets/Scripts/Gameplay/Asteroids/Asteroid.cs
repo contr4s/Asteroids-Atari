@@ -8,6 +8,8 @@ public class Asteroid: MonoBehaviour, IDestroyable
 
     private Rigidbody _rigidbody;
 
+    public bool CreatedByPlayer => false;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -23,24 +25,29 @@ public class Asteroid: MonoBehaviour, IDestroyable
     {
         if (collision.gameObject.TryGetComponent(out PoliceShip policeShip))
         {
-            policeShip.DestroyMe();
+            policeShip.DestroyMe(eDestroyedBy.Asteroid);
         }
     }
 
-    public void DestroyMe()
+    public void DestroyMe(eDestroyedBy destroyedBy = eDestroyedBy.none)
     {
+        if (destroyedBy == eDestroyedBy.Projectile)
+        {
+            GameManager.S.Score += GameManager.S.asteroidsSO.pointsForAsteroidGeneration[generation];
+        }
+
         gameObject.SetActive(false);
-        GameManager.S.SpawnChildAsteroid(generation + 1, transform.position);
+        GameManager.S.SpawnChildAsteroid(generation + 1, transform.position);       
     }
 
     private void InitVelocity()
     {
         Vector3 vel = Random.insideUnitCircle;
         vel.Normalize();
-        vel *= Random.Range(AsteroidsScriptableObject.S.minVel, AsteroidsScriptableObject.S.maxVel) / size;
+        vel *= Random.Range(GameManager.S.asteroidsSO.minVel, GameManager.S.asteroidsSO.maxVel) / size;
 
 
         _rigidbody.velocity = vel;
-        _rigidbody.angularVelocity = Random.insideUnitSphere * AsteroidsScriptableObject.S.maxAngularVel;
+        _rigidbody.angularVelocity = Random.insideUnitSphere * GameManager.S.asteroidsSO.maxAngularVel;
     }
 }

@@ -5,14 +5,22 @@ using UnityEngine;
 public class PoliceShip: MonoBehaviour, IDestroyable
 {
     [SerializeField] private float _speed;
+    [SerializeField] private int _rewardForDestroy;
+
+    public bool CreatedByPlayer => false;
 
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, PlayerShip.position, _speed * Time.deltaTime);
     }
 
-    public void DestroyMe()
+    public void DestroyMe(eDestroyedBy destroyedBy = eDestroyedBy.none)
     {
         gameObject.SetActive(false);
+
+        if (destroyedBy == eDestroyedBy.Projectile)
+        {
+            GameManager.S.Score += _rewardForDestroy;
+        }
     }
 }

@@ -19,4 +19,4 @@ MonoBehaviour:
   asteroidScale: 0.7
   numSmallerAsteroidsToSpawn: 2
   maxAsteroidGeneration: 3
-  pointsForAsteroidSize: 0000000090010000c800000064000000
+  pointsForAsteroidSize: 140000003200000064000000
