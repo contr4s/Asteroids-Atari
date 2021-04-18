@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3385065519345790402}
   - component: {fileID: 2986047471693204010}
-  - component: {fileID: 2986047471693204011}
   - component: {fileID: -4516980824081344003}
+  - component: {fileID: 2986047471693204011}
   - component: {fileID: 1555771842}
   m_Layer: 0
   m_Name: police ship
@@ -50,19 +50,6 @@ MonoBehaviour:
   _speed: 1
   _reloadTime: 2
   _rewardForDestroy: 200
---- !u!135 &2986047471693204011
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2716228625584568184}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.3557941
-  m_Center: {x: 0, y: 1.9239566, z: 0}
 --- !u!114 &-4516980824081344003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +65,19 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 114844671325870714, guid: 29949fcccbdcef84a9f7b97cb5889b5b, type: 3}
   _poolDepth: 5
   _canGrow: 1
+--- !u!135 &2986047471693204011
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716228625584568184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3557941
+  m_Center: {x: 0, y: 1.9239566, z: 0}
 --- !u!82 &1555771842
 AudioSource:
   m_ObjectHideFlags: 0

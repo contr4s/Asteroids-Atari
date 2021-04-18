@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class UIManager
 {
-    [SerializeField] private GameObject[] UIExtraLives;
+    [SerializeField] private GameObject[] UILives;
 
     [SerializeField] private TextMeshProUGUI scoreBoard;
     [SerializeField] private TextMeshProUGUI levelBoard;
@@ -37,15 +37,15 @@ public class UIManager
 
     public void RefreshUILives(int lives)
     {
-        for (int i = 0; i < UIExtraLives.Length; i++)
+        for (int i = 0; i < UILives.Length; i++)
         {
             if (i < lives)
             {
-                UIExtraLives[i].SetActive(true);
+                UILives[i].SetActive(true);
             }
             else
             {
-                UIExtraLives[i].SetActive(false);
+                UILives[i].SetActive(false);
             }
         }
     }

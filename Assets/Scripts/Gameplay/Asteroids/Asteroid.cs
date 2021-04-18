@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Asteroid: MonoBehaviour, IDestroyable
 {
-    public float size;
-    public int generation;
+    [HideInInspector] public float size = 1;
+    [HideInInspector] public int generation = 0;
 
     private Rigidbody _rigidbody;
 

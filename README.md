@@ -1,1 +1,2 @@
-# Asteroids-Atari-1979
+# тестовое задание
+современный клон игры Asteroids Atari 1979

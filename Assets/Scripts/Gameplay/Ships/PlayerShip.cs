@@ -8,7 +8,7 @@ public class PlayerShip: Singleton<PlayerShip>
     [Header("Set in Inspector")]
     [SerializeField] private float _shipSpeed = 10f;
 
-    [SerializeField] private int _startlives = 3;
+    [SerializeField] private int _startLives = 3;
     private int _curLives;
     public int Lives
     {
@@ -52,7 +52,7 @@ public class PlayerShip: Singleton<PlayerShip>
 
     private void Start()
     {
-        Lives = _startlives;
+        Lives = _startLives;
     }
 
     void Update()

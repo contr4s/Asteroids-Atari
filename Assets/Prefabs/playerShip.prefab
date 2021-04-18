@@ -101,8 +101,8 @@ GameObject:
   - component: {fileID: 1515988987743601133}
   - component: {fileID: 1515988987743601123}
   - component: {fileID: 1515988987743601122}
-  - component: {fileID: 1926747712}
   - component: {fileID: 1926747715}
+  - component: {fileID: 1926747712}
   - component: {fileID: 1898622409}
   m_Layer: 0
   m_Name: playerShip
@@ -155,10 +155,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0fa4c205cdb4946b187f1d50409e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipSpeed: 10
+  _shipSpeed: 10
   _startlives: 3
   _projectilePool: {fileID: 749632681}
   _immoratalityTime: 1
+--- !u!114 &1926747715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515988987743601132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6226d571417474b909dc26c60e43f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &1926747712
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -172,18 +184,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.22079864
   m_Center: {x: -0.04078096, y: 0.010882944, z: 0}
---- !u!114 &1926747715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515988987743601132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6226d571417474b909dc26c60e43f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1898622409
 Animator:
   serializedVersion: 3
