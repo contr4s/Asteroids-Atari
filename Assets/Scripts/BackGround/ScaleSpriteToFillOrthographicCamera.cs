@@ -7,7 +7,7 @@ public class ScaleSpriteToFillOrthographicCamera: MonoBehaviour
     [Tooltip("If the camToMatch is not orthographic, this code will do nothing.")]
     public Camera camToMatch;
 
-    void Start()
+    private void Start()
     {
         // The camera must be Orthographic for this to work.
         if (camToMatch == null || !camToMatch.orthographic)

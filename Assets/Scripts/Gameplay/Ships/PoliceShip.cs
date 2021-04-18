@@ -36,7 +36,7 @@ public class PoliceShip: MonoBehaviour, IDestroyable
             GameManager.S.Score += _rewardForDestroy;
         }
 
-        var explosion = GameManager.S.explosionsPool.GetAvailableObject();
+        ParticleSystem explosion = GameManager.S.explosionsPool.GetAvailableObject();
         GameManager.S.explosionsPool.InitExplosion(explosion, transform.position);
     }
 
@@ -46,7 +46,7 @@ public class PoliceShip: MonoBehaviour, IDestroyable
 
         while (true)
         {
-            var projectile = _projectilePool.GetAvailableObject();
+            Projectile projectile = _projectilePool.GetAvailableObject();
             _projectilePool.InitProjectile(projectile, false, transform.position, PlayerShip.position);
 
             yield return new WaitForSeconds(reload);

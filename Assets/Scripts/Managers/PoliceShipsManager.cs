@@ -18,7 +18,7 @@ public class PoliceShipsManager: MonoBehaviour
         int policeShipAmount = 0;
         while (policeShipAmount < amount)
         {
-            var policeShip = _policeShipsPool.GetAvailableObject();
+            PoliceShip policeShip = _policeShipsPool.GetAvailableObject();
 
             policeShip.transform.position = GameManager.FindGoodLocation();
             policeShip.gameObject.SetActive(true);

@@ -21,7 +21,7 @@ public class ScreenBounds: MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
         cam = Camera.main;
         // Need to make sure that the camera is Orthographic for this to work

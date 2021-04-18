@@ -55,7 +55,7 @@ public class PlayerShip: Singleton<PlayerShip>
         Lives = _startLives;
     }
 
-    void Update()
+    private void Update()
     {
         float aX = Input.GetAxis("Horizontal");
         float aY = Input.GetAxis("Vertical");
@@ -95,7 +95,7 @@ public class PlayerShip: Singleton<PlayerShip>
         mPos.z = -_mainCam.transform.position.z;
         Vector3 mPos3D = _mainCam.ScreenToWorldPoint(mPos);
 
-        var projectile = _projectilePool.GetAvailableObject();
+        Projectile projectile = _projectilePool.GetAvailableObject();
         _projectilePool.InitProjectile(projectile, true, transform.position, mPos3D);
     }
 

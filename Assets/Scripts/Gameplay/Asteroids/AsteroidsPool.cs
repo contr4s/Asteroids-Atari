@@ -1,3 +1,3 @@
-﻿class AsteroidsPool: ObjectPool<Asteroid>
+﻿public class AsteroidsPool: ObjectPool<Asteroid>
 {
 }

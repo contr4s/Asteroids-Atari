@@ -1,3 +1,3 @@
-﻿class PoliceShipPool: ObjectPool<PoliceShip>
+﻿public class PoliceShipPool: ObjectPool<PoliceShip>
 {
 }

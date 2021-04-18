@@ -37,7 +37,7 @@ public class Asteroid: MonoBehaviour, IDestroyable
             GameManager.S.Score += GameManager.S.asteroidsSO.pointsForAsteroidGeneration[generation];
         }
 
-        var explosion = GameManager.S.explosionsPool.GetAvailableObject();
+        ParticleSystem explosion = GameManager.S.explosionsPool.GetAvailableObject();
         GameManager.S.explosionsPool.InitExplosion(explosion, transform.position, size);
 
         gameObject.SetActive(false);

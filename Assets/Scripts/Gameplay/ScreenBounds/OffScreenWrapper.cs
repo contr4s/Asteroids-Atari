@@ -15,7 +15,7 @@ public class OffScreenWrapper: MonoBehaviour
         }
         else
         {
-            var extraBounds = other.GetComponentInParent<ScreenBounds>();
+            ScreenBounds extraBounds = other.GetComponentInParent<ScreenBounds>();
 
             if (extraBounds)
             {

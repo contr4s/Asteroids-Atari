@@ -14,7 +14,7 @@ public class ObjectPool<T>: MonoBehaviour where T : Component
     {
         for (int i = 0; i < _poolDepth; i++)
         {
-            var pooledObject = Instantiate(spawnObjectPrefab);
+            T pooledObject = Instantiate(spawnObjectPrefab);
             pooledObject.gameObject.SetActive(false);
             _pool.Add(pooledObject);
             pooledObject.transform.parent = gameObject.transform;
@@ -31,7 +31,7 @@ public class ObjectPool<T>: MonoBehaviour where T : Component
 
         if (_canGrow == true)
         {
-            var pooledObject = Instantiate(spawnObjectPrefab);
+            T pooledObject = Instantiate(spawnObjectPrefab);
             pooledObject.gameObject.SetActive(false);
             _pool.Add(pooledObject);
 
